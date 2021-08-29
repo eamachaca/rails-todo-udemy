@@ -1,7 +1,15 @@
-<p id="notice"><%= notice %></p>
-
 <h1>To-Do Lists</h1>
 
+<center>
+  <div class="card" style="width: 18rem;">
+    <div class="card-header">
+      ToDo
+    </div>
+    <div class="card-body">
+      <%= render 'form_index' %>
+    </div>
+  </div>
+</center>
 <table class="table table-bordered">
   <thead>
   <tr>
@@ -13,12 +21,12 @@
   <tbody>
   <% @lists.each do |list| %>
     <tr <%= list.completed ? 'class=table-secondary' : '' %>>
-      <td <%= list.completed ? 'class=striker' : '' %>><%= list.description %></td>
+      <td <%= list.completed ? 'class=striker' : '' %>>
+        <%= link_to list.description, edit_list_path(list) %>
+      </td>
       <td><%= list.completed %></td>
       <td>
-        <%= link_to 'Show', list %>
-        <%= link_to 'Edit', edit_list_path(list) %>
-        <%= link_to 'Destroy', list, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <center><%= link_to 'Destroy', list, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></center>
       </td>
     </tr>
   <% end %>
